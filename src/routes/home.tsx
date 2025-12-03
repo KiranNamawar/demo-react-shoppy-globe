@@ -1,5 +1,7 @@
+import ProductList from "../components/products-list";
+
 function Home() {
-  return "Hello World";
+  return <ProductList />;
 }
 
 export default Home;
