@@ -8,7 +8,6 @@ function App() {
       <main>
         <Outlet />
       </main>
-      {/* <footer>footer</footer> */}
     </div>
   );
 }

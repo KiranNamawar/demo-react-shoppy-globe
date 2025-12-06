@@ -1,8 +1,3 @@
-/**
- * ShoppyGlobe - E-Commerce Application Styles
- * Modern, responsive design with custom CSS
- */
-
 :root {
   color-scheme: light dark;
 
@@ -65,7 +60,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -119,7 +116,11 @@ body {
   & h1 {
     font-size: 1.75rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -186,7 +187,6 @@ body {
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -200,7 +200,11 @@ body {
 .welcome-title {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -299,7 +303,12 @@ body {
 .product-image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--color-surface) 0%, var(--color-border) 50%, var(--color-surface) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    var(--color-border) 50%,
+    var(--color-surface) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -560,7 +569,12 @@ body {
 .product-image-placeholder.large {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--color-surface) 0%, var(--color-border) 50%, var(--color-surface) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    var(--color-border) 50%,
+    var(--color-surface) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -685,12 +699,12 @@ body {
   gap: var(--spacing-md);
   align-items: start;
 
-  &>svg {
+  & > svg {
     color: var(--color-primary);
     flex-shrink: 0;
   }
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
@@ -846,7 +860,12 @@ body {
 .cart-item-image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--color-surface) 0%, var(--color-border) 50%, var(--color-surface) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    var(--color-border) 50%,
+    var(--color-surface) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -1071,7 +1090,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 
-  &>h1 {
+  & > h1 {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: var(--spacing-xl);
@@ -1302,7 +1321,6 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-
   .product-detail-content,
   .cart-content,
   .checkout-content {
@@ -1442,7 +1460,7 @@ body {
   }
 
   /* Checkout Page Responsiveness */
-  .checkout-container>h1 {
+  .checkout-container > h1 {
     font-size: 1.5rem;
   }
 
@@ -1573,3 +1591,4 @@ body {
     font-weight: 700;
   }
 }
+

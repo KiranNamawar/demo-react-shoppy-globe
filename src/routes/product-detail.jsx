@@ -10,7 +10,6 @@ import {
   Shield,
 } from "lucide-react";
 import useProducts from "../hooks/products";
-import type { Product } from "../types/product";
 import { addToCart } from "../redux/cart-slice";
 import { useState } from "react";
 
@@ -20,14 +19,16 @@ import { useState } from "react";
  * Uses dynamic route parameter to fetch specific product
  */
 function ProductDetail() {
-  const { productId } = useParams<{ productId: string }>();
+  const { productId } = useParams();
   const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const { data: product, loading, error } = useProducts<Product>(
-    productId ? parseInt(productId, 10) : undefined,
-  );
+  const {
+    data: product,
+    loading,
+    error,
+  } = useProducts(productId ? parseInt(productId, 10) : undefined);
 
   /**
    * Handle add to cart button click
@@ -80,7 +81,9 @@ function ProductDetail() {
         {/* Image Gallery */}
         <div className="product-gallery">
           <div className="main-image-container">
-            {!imageLoaded && <div className="product-image-placeholder large" />}
+            {!imageLoaded && (
+              <div className="product-image-placeholder large" />
+            )}
             <img
               src={product.images[selectedImage] || product.thumbnail}
               alt={product.title}
@@ -101,7 +104,11 @@ function ProductDetail() {
                   }}
                   className={`thumbnail ${selectedImage === index ? "active" : ""}`}
                 >
-                  <img src={image} alt={`${product.title} ${index + 1}`} loading="lazy" />
+                  <img
+                    src={image}
+                    alt={`${product.title} ${index + 1}`}
+                    loading="lazy"
+                  />
                 </button>
               ))}
             </div>
@@ -129,7 +136,9 @@ function ProductDetail() {
             <span className="price-current">${discountedPrice}</span>
             {product.discountPercentage > 0 && (
               <>
-                <span className="price-original">${product.price.toFixed(2)}</span>
+                <span className="price-original">
+                  ${product.price.toFixed(2)}
+                </span>
                 <span className="discount-badge">
                   Save {product.discountPercentage.toFixed(0)}%
                 </span>
@@ -144,7 +153,9 @@ function ProductDetail() {
               <Package size={20} />
               <div>
                 <span className="meta-label">Availability</span>
-                <span className={`meta-value stock-${product.availabilityStatus.toLowerCase().replace(" ", "-")}`}>
+                <span
+                  className={`meta-value stock-${product.availabilityStatus.toLowerCase().replace(" ", "-")}`}
+                >
                   {product.availabilityStatus} ({product.stock} units)
                 </span>
               </div>
@@ -154,7 +165,9 @@ function ProductDetail() {
               <Truck size={20} />
               <div>
                 <span className="meta-label">Shipping</span>
-                <span className="meta-value">{product.shippingInformation}</span>
+                <span className="meta-value">
+                  {product.shippingInformation}
+                </span>
               </div>
             </div>
 
@@ -162,7 +175,9 @@ function ProductDetail() {
               <Shield size={20} />
               <div>
                 <span className="meta-label">Warranty</span>
-                <span className="meta-value">{product.warrantyInformation}</span>
+                <span className="meta-value">
+                  {product.warrantyInformation}
+                </span>
               </div>
             </div>
           </div>
@@ -173,9 +188,15 @@ function ProductDetail() {
           </button>
 
           <div className="additional-info">
-            <p><strong>SKU:</strong> {product.sku}</p>
-            <p><strong>Category:</strong> {product.category}</p>
-            <p><strong>Return Policy:</strong> {product.returnPolicy}</p>
+            <p>
+              <strong>SKU:</strong> {product.sku}
+            </p>
+            <p>
+              <strong>Category:</strong> {product.category}
+            </p>
+            <p>
+              <strong>Return Policy:</strong> {product.returnPolicy}
+            </p>
           </div>
         </div>
       </div>

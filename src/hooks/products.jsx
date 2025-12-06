@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 const BASE_URL = "https://dummyjson.com/products/";
 
-function useProducts<T>(id?: number) {
-  const [data, setData] = useState<T | null>(null);
+function useProducts(id) {
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   const API_URL = id ? BASE_URL + id : BASE_URL;
 

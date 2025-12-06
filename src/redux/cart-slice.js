@@ -1,16 +1,6 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { Product } from "../types/product";
-import type { RootState } from "./store";
+import { createSlice } from "@reduxjs/toolkit";
 
-/**
- * Cart item type with product and quantity
- */
-export type CartItem = {
-  product: Product;
-  quantity: number;
-};
-
-const initialState: CartItem[] = [];
+const initialState = [];
 
 /**
  * Cart slice for managing shopping cart state
@@ -23,10 +13,8 @@ const cart = createSlice({
     /**
      * Add a product to the cart
      * If product already exists, increment quantity
-     * @param state - Current cart state
-     * @param action - Product to add
      */
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToCart: (state, action) => {
       const index = state.findIndex(
         (item) => item.product.id === action.payload.id,
       );
@@ -39,11 +27,11 @@ const cart = createSlice({
     /**
      * Remove one unit of a product from cart
      * If quantity is 1, removes the item entirely
-     * @param state - Current cart state
-     * @param action - Product ID to remove
      */
-    removeFromCart: (state, action: PayloadAction<Product["id"]>) => {
-      const index = state.findIndex((item) => item.product.id === action.payload);
+    removeFromCart: (state, action) => {
+      const index = state.findIndex(
+        (item) => item.product.id === action.payload,
+      );
 
       if (index !== -1) {
         const item = state[index];
@@ -57,13 +45,8 @@ const cart = createSlice({
     /**
      * Update the quantity of a product in cart
      * Ensures quantity is at least 1
-     * @param state - Current cart state
-     * @param action - Payload with product ID and new quantity
      */
-    updateQuantity: (
-      state,
-      action: PayloadAction<{ id: number; quantity: number }>,
-    ) => {
+    updateQuantity: (state, action) => {
       const index = state.findIndex(
         (item) => item.product.id === action.payload.id,
       );
@@ -74,11 +57,11 @@ const cart = createSlice({
     },
     /**
      * Remove an item completely from the cart
-     * @param state - Current cart state
-     * @param action - Product ID to remove
      */
-    deleteFromCart: (state, action: PayloadAction<Product["id"]>) => {
-      const index = state.findIndex((item) => item.product.id === action.payload);
+    deleteFromCart: (state, action) => {
+      const index = state.findIndex(
+        (item) => item.product.id === action.payload,
+      );
       if (index !== -1) {
         state.splice(index, 1);
       }
@@ -106,18 +89,18 @@ export const cartReducer = cart.reducer;
 /**
  * Get all cart items
  */
-export const selectCartItems = (state: RootState) => state.cart;
+export const selectCartItems = (state) => state.cart;
 
 /**
  * Get total number of items in cart (sum of all quantities)
  */
-export const selectCartItemsCount = (state: RootState) =>
+export const selectCartItemsCount = (state) =>
   state.cart.reduce((total, item) => total + item.quantity, 0);
 
 /**
  * Get total price of all items in cart
  */
-export const selectCartTotal = (state: RootState) =>
+export const selectCartTotal = (state) =>
   state.cart.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0,
